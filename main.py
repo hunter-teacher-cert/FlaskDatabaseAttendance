@@ -17,8 +17,6 @@ app = Flask(  # Create a flask app
 )
 app.secret_key="something"
 
-
-
 ok_chars = string.ascii_letters + string.digits
 
 @app.route('/')  # What happens when the user visits the site
