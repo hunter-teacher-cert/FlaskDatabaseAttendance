@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+<font size=+2>Cuts by Section</font>
+<hr>
+Query:  
+SELECT * FROM
+(
+SELECT courseSection, teacher, COUNT(*) AS totalCuts
+FROM
+(
+SELECT *
+FROM scan AS s
+INNER JOIN periodAtt AS p
+ON s.StudentID=p.StudentID AND substr(ScanTime, 1,inStr(ScanTime, ' ')-1)=p.Date
+WHERE Attendance='A'
+) AS allCuts
+GROUP BY courseSection
+HAVING substr(courseSection,1,1)='M'
+) AS myTable2
+WHERE teacher IN ('Siena, V', 'Jarding, T', 'Rael, S', 'Oto, T', 'Klar, S', 'Pylant, C')
+ORDER BY totalCuts DESC
+<hr>
+Result:<br></br>
+
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+
+
+{% endblock %}

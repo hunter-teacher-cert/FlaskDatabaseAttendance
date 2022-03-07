@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+<font size=+2>Cuts by Teacher</font>
+
+<hr>
+Query: SELECT Teacher, COUNT(*) AS Total
+FROM
+(
+SELECT *
+FROM scan AS s
+INNER JOIN periodAtt AS p
+ON s.StudentID=p.StudentID AND substr(ScanTime, 1,inStr(ScanTime, ' ')-1)=p.Date
+WHERE Attendance='A'
+) AS allCuts
+GROUP BY Teacher
+ORDER BY Total DESC
+<hr>
+Result:<br></br>
+
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+
+
+{% endblock %}

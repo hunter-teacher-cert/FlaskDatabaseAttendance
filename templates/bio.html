@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+<font size=+2>Bio</font>
+<hr>
+Query:  SELECT * FROM bio<br></br>
+<hr>
+Result:<br></br>
+
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+
+
+{% endblock %}

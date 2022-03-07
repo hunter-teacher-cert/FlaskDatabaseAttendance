@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+</br>
+
+{% if name|length > 0 %}
+<font size=+0>Welcome {{name}}, Present! Gold Member!</font>
+{% else %}
+<font size=+0>Join Present!:  Your Attendance Solution
+</font>
+<h1>{{error}}</h1>
+<form method="POST">
+<table>
+  <tr><td>
+  Name: </td><td>
+<input name="username">
+  </td></tr>
+<tr><td>
+  Password:</td><td>
+<input name="password">
+  </td></tr>
+  <tr><td colspan=2>
+<button>SUBMIT</button>
+  </td></tr>
+</form>
+{% endif %}
+
+
+
+
+
+{% endblock %}

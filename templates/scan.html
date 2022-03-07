@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+<font size=+2>Scan Data</font>
+
+<hr>
+Query:  SELECT * FROM scan<hr>
+Result:
+
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+
+
+{% endblock %}

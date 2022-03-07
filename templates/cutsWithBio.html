@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+<font size=+2>Cuts with Bio</font>
+
+<hr>
+Query: SELECT b.First, b.Last, b.StudentID, Grade,ScanTime, Status, Date, CourseSection, Attendance, Teacher, Period, Parent1Phone, Parent2Phone, ParentEmail
+FROM
+(
+SELECT *
+FROM scan AS s
+INNER JOIN periodAtt AS p
+ON s.StudentID=p.StudentID AND substr(ScanTime, 1,inStr(ScanTime, ' ')-1)=p.Date
+WHERE Attendance='A'
+) AS allCuts
+LEFT JOIN bio AS b
+ON allCuts.StudentID=b.StudentID
+<hr>
+Result:<br></br>
+
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+
+
+{% endblock %}

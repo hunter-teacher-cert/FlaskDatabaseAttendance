@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+<font size=+2>Cuts by Period</font>
+<hr>
+Query:  SELECT First, Last, StudentID, SUM (Pd1) AS Pd1_, SUM (Pd2) AS Pd2_, SUM (Pd3) AS Pd3_, SUM (Pd4) AS Pd4_, SUM (Pd5) AS Pd5_, SUM (Pd6) AS Pd6_, SUM (Pd7) AS Pd7_, SUM (Pd8) AS Pd8_, SUM (Pd9) AS Pd9_, 
+SUM (PD1)+SUM(PD2)+SUM(PD3)+SUM(PD4)+SUM(PD5)+SUM(PD6)+SUM(PD7)+SUM(PD8)+SUM(PD9) as Total
+FROM
+(
+SELECT First, Last, StudentID, 
+(Period=1) AS Pd1,
+(Period=2) AS Pd2,
+(Period=3) AS Pd3,
+(Period=4) AS Pd4,
+(Period=5) AS Pd5,
+(Period=6) AS Pd6,
+(Period=7) AS Pd7,
+(Period=8) AS Pd8,
+(Period=9) AS Pd9
+FROM
+(
+SELECT *
+FROM scan AS s
+INNER JOIN periodAtt AS p
+ON s.StudentID=p.StudentID AND substr(ScanTime, 1,inStr(ScanTime, ' ')-1)=p.Date
+WHERE Attendance='A'
+)
+
+)
+GROUP BY StudentID, Last, First
+ORDER BY Last, First
+<hr>
+Result:<br></br>
+
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+
+
+{% endblock %}

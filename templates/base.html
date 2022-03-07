@@ -1,0 +1,25 @@
+<html>
+  <head>
+  <title>Present! -- Your School Attendance Solution</title>  
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+<body>
+<img src="/static/checkMark.jpg" width=40> <font size=+3>Present!</font><br><font size=-1><i><a href="aboutUs.html">Your Attendance Solution</a></i><br>
+
+  {% if username != "" %}
+ Gold Present! Member:  {{ username }}  
+  {% else %}
+<a href="form_demo.html">Join Present!: Your Attendance Solution</a>
+  {% endif %}
+  
+  <br>
+  <hr><font size=-1>
+Basic Members:  <a href="initialize.html">Initialize Database</a> | <a href="scan.html">Scan Data</a> | <a href="periodAttendance.html">Period Attendance</a> | <a href="bio.html">Bio</a> <br>Gold Members:  <a href="cuts.html">Cuts by Student</a> | <a href="cutsByTeacher.html">Cuts by Teacher</a> | <a href="cutsBySection.html">Cuts by Section</a> | <a href="cutsWithBio.html">Cuts with Bio</a> | <a href="cutsByPeriod.html">Cuts by Period</a><br>
+  <a href="form_demo.html">Join Present!: Your Attendance Solution</a>
+  </br> </font>
+  <hr></hr>
+  <img src="/static/attendance.jpg" width=40>  Welcome to Present!  - <i>Your Attendance Solution</i>
+  {% block content %}
+  {% endblock %}
+</body>
+</html>
